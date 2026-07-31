@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-MINHAJ MKS | Founder Admin Control Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --mks-primary: #065f46; /* Emerald 800 */
+            --mks-gold: #b45309; /* Amber 700 */
+            --mks-bg: #f8fafc;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--mks-bg); }
+        .sidebar-link.active { background-color: var(--mks-primary); color: white; border-right: 4px solid var(--mks-gold); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .status-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; }
+        .level-master { background: #4c1d95; color: white; }
+        .level-pro { background: #1e40af; color: white; }
+        .level-basic { background: #065f46; color: white; }
+        .level-free { background: #64748b; color: white; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white border-r shadow-sm flex flex-col fixed h-full">
+        <div class="p-6 border-b text-center">
+            <div class="w-16 h-16 bg-emerald-800 rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold mb-2">MKS</div>
+            <h1 class="text-emerald-900 font-bold text-lg leading-tight">AL-MINHAJ MKS</h1>
+            <p class="text-xs text-amber-700 font-semibold tracking-widest">FOUNDER PANEL V2.0</p>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4">
+            <a href="#" onclick="showSection('overview')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50 active" id="link-overview">
+                <i class="fas fa-th-large w-6"></i> <span>Control Center</span>
+            </a>
+            <a href="#" onclick="showSection('courses')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-courses">
+                <i class="fas fa-book-open w-6"></i> <span>Course Factory</span>
+            </a>
+            <a href="#" onclick="showSection('membership')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-membership">
+                <i class="fas fa-id-card w-6"></i> <span>Membership Plans</span>
+            </a>
+            <a href="#" onclick="showSection('payments')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-payments">
+                <i class="fas fa-wallet w-6"></i> <span>Payment Settings</span>
+            </a>
+            <a href="#" onclick="showSection('ai-runtime')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-ai-runtime">
+                <i class="fas fa-robot w-6"></i> <span>AI Runtime Center</span>
+            </a>
+            <a href="#" onclick="showSection('members')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-members">
+                <i class="fas fa-users w-6"></i> <span>Member Manager</span>
+            </a>
+            <a href="#" onclick="showSection('branding')" class="sidebar-link flex items-center px-6 py-3 text-gray-700 hover:bg-emerald-50" id="link-branding">
+                <i class="fas fa-paint-brush w-6"></i> <span>Branding Control</span>
+            </a>
+        </nav>
+        
+        <div class="p-4 border-t bg-gray-50">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white text-xs">F</div>
+                <div>
+                    <p class="text-xs font-bold text-gray-800">Founder Admin</p>
+                    <p class="text-[10px] text-emerald-700 uppercase font-bold tracking-tighter">Super Access</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="ml-64 flex-1 p-8">
+        
+        <!-- HEADER -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 id="section-title" class="text-2xl font-bold text-emerald-900">Control Center Overview</h2>
+                <p class="text-gray-500 text-sm">Welcome back, Founder. All systems are operational.</p>
+            </div>
+            <div class="flex space-x-3">
+                <button onclick="saveAllChanges()" class="bg-amber-600 text-white px-5 py-2 rounded-lg font-bold shadow-md hover:bg-amber-700 transition">
+                    <i class="fas fa-save mr-2"></i> Save All Changes
+                </button>
+                <button class="bg-white border px-5 py-2 rounded-lg font-bold shadow-sm hover:bg-gray-50">
+                    <i class="fas fa-globe mr-2"></i> View Live Site
+                </button>
+            </div>
+        </header>
+
+        <!-- SECTION: OVERVIEW -->
+        <section id="section-overview" class="admin-section">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-emerald-600">
+                    <p class="text-gray-500 text-xs font-bold uppercase">Total Members</p>
+                    <h3 class="text-3xl font-bold text-emerald-900">1,240</h3>
+                    <p class="text-green-600 text-xs mt-2"><i class="fas fa-arrow-up"></i> 12% this month</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
+                    <p class="text-gray-500 text-xs font-bold uppercase">Active Courses</p>
+                    <h3 class="text-3xl font-bold text-blue-900">12</h3>
+                    <p class="text-gray-500 text-xs mt-2">All Runtime Inherited</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-amber-600">
+                    <p class="text-gray-500 text-xs font-bold uppercase">Pending Payments</p>
+                    <h3 class="text-3xl font-bold text-amber-900">8</h3>
+                    <p class="text-amber-600 text-xs mt-2 font-bold cursor-pointer underline">Review Now</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-600">
+                    <p class="text-gray-500 text-xs font-bold uppercase">AI API Usage</p>
+                    <h3 class="text-3xl font-bold text-purple-900">84%</h3>
+                    <p class="text-gray-500 text-xs mt-2">Model: GPT-4o / Claude</p>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold text-emerald-900 mb-4">Quick Actions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-emerald-900 text-white p-6 rounded-xl shadow-lg cursor-pointer hover:bg-emerald-800" onclick="showSection('courses')">
+                    <i class="fas fa-plus-circle text-3xl mb-4"></i>
+                    <h4 class="font-bold text-lg">Create New Course</h4>
+                    <p class="text-emerald-100 text-sm">Add a subject to the Universal Knowledge System.</p>
+                </div>
+                <div class="bg-white border-2 border-dashed border-gray-300 p-6 rounded-xl flex flex-col items-center justify-center text-gray-500 cursor-pointer hover:border-emerald-600 hover:text-emerald-600 transition" onclick="showSection('members')">
+                    <i class="fas fa-user-plus text-3xl mb-4"></i>
+                    <h4 class="font-bold text-lg">Verify Memberships</h4>
+                    <p class="text-sm">Approve receipts and upgrade accounts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: COURSE FACTORY -->
+        <section id="section-courses" class="admin-section hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-emerald-900">Master Courses CMS</h3>
+                <button class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-bold shadow hover:bg-emerald-700" onclick="alert('Opening New Course Editor...')">
+                    <i class="fas fa-plus mr-2"></i> Add New Course
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="course-grid">
+                <!-- Courses will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- SECTION: PAYMENTS -->
+        <section id="section-payments" class="admin-section hidden">
+            <h3 class="text-xl font-bold text-emerald-900 mb-6">Payment Gateway Configuration</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- JazzCash -->
+                <div class="bg-white p-6 rounded-xl border shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/JazzCash_logo.png" class="h-8" alt="JazzCash">
+                        <span class="status-badge bg-green-100 text-green-700">Active</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Account Title</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="AL-MINHAJ MKS FOUNDATION">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Account Number</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="03001234567">
+                        </div>
+                        <button class="w-full mt-4 bg-emerald-50 text-emerald-700 py-2 rounded font-bold hover:bg-emerald-100 transition">Update JazzCash Details</button>
+                    </div>
+                </div>
+
+                <!-- EasyPaisa -->
+                <div class="bg-white p-6 rounded-xl border shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt text-emerald-600 text-2xl mr-2"></i>
+                            <span class="font-bold text-emerald-900">EasyPaisa</span>
+                        </div>
+                        <span class="status-badge bg-green-100 text-green-700">Active</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Account Title</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="AL-MINHAJ OFFICIAL">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Account Number</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="03450000000">
+                        </div>
+                        <button class="w-full mt-4 bg-emerald-50 text-emerald-700 py-2 rounded font-bold hover:bg-emerald-100 transition">Update EasyPaisa Details</button>
+                    </div>
+                </div>
+
+                <!-- Bank -->
+                <div class="bg-white p-6 rounded-xl border shadow-sm lg:col-span-2">
+                    <h4 class="font-bold text-gray-700 mb-4 border-b pb-2">Primary Bank Account (Manual)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Bank Name</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="Meezan Bank">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">IBAN</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="PK72 MEZN 0011 2233 4455 6677">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Branch Code</label>
+                            <input type="text" class="w-full border-b py-2 focus:outline-none focus:border-emerald-600" value="1029">
+                        </div>
+                    </div>
+                    <button class="mt-6 bg-emerald-800 text-white px-6 py-2 rounded font-bold hover:bg-emerald-700">Save Bank Instructions</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: AI RUNTIME -->
+        <section id="section-ai-runtime" class="admin-section hidden">
+            <div class="bg-emerald-900 text-white p-8 rounded-2xl shadow-xl">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-brain text-4xl text-amber-500 mr-4"></i>
+                    <div>
+                        <h3 class="text-2xl font-bold">Universal AI Runtime Vault</h3>
+                        <p class="text-emerald-200 text-sm">This core logic is inherited by all members and all courses across the platform.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-amber-500 text-xs font-bold uppercase mb-2">Master Instruction Set</label>
+                        <textarea class="w-full bg-emerald-800 border border-emerald-700 rounded-lg p-4 text-emerald-50 text-sm h-64 focus:ring-2 focus:ring-amber-500 outline-none">
+[AL-MINHAJ MKS UNIVERSAL RUNTIME]
+Identity: You are the MKS Master Knowledge System.
+Goal: Provide Authentic Knowledge → Deep Understanding → Practical Mastery.
+Rules:
+1. Always reference primary Islamic sources where applicable.
+2. Use academic research frameworks for technical queries.
+3. Support Multi-Language outputs (Urdu/Arabic/English).
+4. Maintain a professional, respectful, and authoritative tone.
+5. If the member level is FREE, provide concise answers.
+6. If member is MASTER, provide deep scholarly analysis.
+                        </textarea>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <span class="text-xs bg-emerald-700 px-3 py-1 rounded-full border border-emerald-600 text-emerald-200 uppercase tracking-widest">Global Status: ACTIVE</span>
+                            <span class="text-xs bg-emerald-700 px-3 py-1 rounded-full border border-emerald-600 text-emerald-200 uppercase tracking-widest">Inheritance: FORCED</span>
+                        </div>
+                        <button onclick="saveAllChanges()" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg transition">Update Universal Runtime</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: MEMBERSHIP -->
+        <section id="section-membership" class="admin-section hidden">
+            <h3 class="text-xl font-bold text-emerald-900 mb-6">Membership Tier Management</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tiers -->
+                <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-gray-100 p-4 text-center font-bold text-gray-700">FREE</div>
+                    <div class="p-6">
+                        <p class="text-2xl font-bold text-center mb-4">Rs. 0</p>
+                        <ul class="text-xs space-y-2 text-gray-500 mb-6">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Free Courses</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Limited AI</li>
+                            <li><i class="fas fa-times text-red-400 mr-2"></i> Research Tools</li>
+                        </ul>
+                        <button class="w-full border border-emerald-600 text-emerald-600 py-2 rounded-lg text-sm font-bold hover:bg-emerald-50">Edit Plan</button>
+                    </div>
+                </div>
+                <div class="bg-white border rounded-xl overflow-hidden shadow-md border-emerald-600 scale-105 z-10">
+                    <div class="bg-emerald-800 p-4 text-center font-bold text-white uppercase tracking-widest">Basic</div>
+                    <div class="p-6">
+                        <p class="text-2xl font-bold text-center mb-4">Rs. 2,000</p>
+                        <ul class="text-xs space-y-2 text-gray-500 mb-6">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Standard Courses</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Basic AI Help</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> PDF Notes</li>
+                        </ul>
+                        <button class="w-full bg-emerald-800 text-white py-2 rounded-lg text-sm font-bold shadow hover:bg-emerald-700">Edit Plan</button>
+                    </div>
+                </div>
+                <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-blue-800 p-4 text-center font-bold text-white uppercase tracking-widest">Professional</div>
+                    <div class="p-6">
+                        <p class="text-2xl font-bold text-center mb-4">Rs. 5,000</p>
+                        <ul class="text-xs space-y-2 text-gray-500 mb-6">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Advanced Content</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Research Tools</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Full AI Features</li>
+                        </ul>
+                        <button class="w-full border border-blue-600 text-blue-600 py-2 rounded-lg text-sm font-bold hover:bg-blue-50">Edit Plan</button>
+                    </div>
+                </div>
+                <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-purple-900 p-4 text-center font-bold text-white uppercase tracking-widest">Master</div>
+                    <div class="p-6">
+                        <p class="text-2xl font-bold text-center mb-4">Rs. 10,000</p>
+                        <ul class="text-xs space-y-2 text-gray-500 mb-6">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Everything Access</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Exclusive Archives</li>
+                            <li><i class="fas fa-star text-amber-500 mr-2"></i> Direct Support</li>
+                        </ul>
+                        <button class="w-full border border-purple-900 text-purple-900 py-2 rounded-lg text-sm font-bold hover:bg-purple-50">Edit Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: BRANDING -->
+        <section id="section-branding" class="admin-section hidden">
+            <h3 class="text-xl font-bold text-emerald-900 mb-6">Visual Identity & Branding</h3>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Logo Upload -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-4">Main Platform Logo</label>
+                        <div class="flex items-center space-x-6">
+                            <div class="w-24 h-24 bg-emerald-900 rounded-xl flex items-center justify-center text-white text-4xl font-bold">MKS</div>
+                            <div class="space-y-2">
+                                <button class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded font-bold text-sm">Upload New Logo</button>
+                                <p class="text-xs text-gray-400">PNG or SVG, Max 2MB. Square format.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cover Image -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-4">Dashboard Cover Image</label>
+                        <div class="w-full h-24 bg-gray-200 rounded-xl overflow-hidden relative">
+                             <div class="absolute inset-0 bg-gradient-to-r from-emerald-900 to-transparent flex items-center px-4">
+                                <span class="text-white font-bold text-xs">MKS Platform Cover Preview</span>
+                             </div>
+                        </div>
+                        <button class="mt-4 bg-emerald-50 text-emerald-700 px-4 py-2 rounded font-bold text-sm">Update Cover</button>
+                    </div>
+                </div>
+
+                <div class="border-t pt-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Application Name</label>
+                            <input type="text" class="w-full border p-2 rounded focus:ring-emerald-500 outline-none" value="AL-MINHAJ MKS">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Platform Tagline</label>
+                            <input type="text" class="w-full border p-2 rounded focus:ring-emerald-500 outline-none" value="Authentic Knowledge → Practical Mastery">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Primary Color (Emerald)</label>
+                            <input type="color" class="w-full h-10 p-1 border rounded" value="#065f46">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: MEMBERS -->
+        <section id="section-members" class="admin-section hidden">
+             <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-emerald-900">Member Directory</h3>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Search by name or email..." class="border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <button class="bg-gray-100 p-2 rounded-lg px-4 font-bold text-sm">Filter</button>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-6 py-3 text-xs font-bold text-gray-500 uppercase">Member Name</th>
+                            <th class="px-6 py-3 text-xs font-bold text-gray-500 uppercase">Membership</th>
+                            <th class="px-6 py-3 text-xs font-bold text-gray-500 uppercase">Enrollments</th>
+                            <th class="px-6 py-3 text-xs font-bold text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="px-6 py-4">
+                                <p class="font-bold text-gray-800 text-sm">Ahmed Mansour</p>
+                                <p class="text-xs text-gray-500">ahmed@example.com</p>
+                            </td>
+                            <td class="px-6 py-4"><span class="status-badge level-master">Master</span></td>
+                            <td class="px-6 py-4 text-sm text-gray-600 font-medium">8 Courses</td>
+                            <td class="px-6 py-4">
+                                <button class="text-emerald-700 font-bold text-xs hover:underline mr-3">Edit Profile</button>
+                                <button class="text-red-600 font-bold text-xs hover:underline">Suspend</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4">
+                                <p class="font-bold text-gray-800 text-sm">Sara Khan</p>
+                                <p class="text-xs text-gray-500">sara.k@gmail.com</p>
+                            </td>
+                            <td class="px-6 py-4"><span class="status-badge level-pro">Professional</span></td>
+                            <td class="px-6 py-4 text-sm text-gray-600 font-medium">3 Courses</td>
+                            <td class="px-6 py-4">
+                                <button class="text-emerald-700 font-bold text-xs hover:underline mr-3">Edit Profile</button>
+                                <button class="text-red-600 font-bold text-xs hover:underline">Suspend</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SUCCESS NOTIFICATION -->
+    <div id="toast" class="fixed bottom-10 right-10 bg-emerald-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 transition-opacity duration-500 opacity-0 pointer-events-none z-50">
+        <i class="fas fa-check-circle text-amber-500 text-xl"></i>
+        <div>
+            <p class="font-bold text-sm">Success</p>
+            <p class="text-xs text-emerald-200">Settings updated and synced with database.</p>
+        </div>
+    </div>
+
+    <script>
+        const courses = [
+            { id: 1, title_ur: "عربی زبان سیکھیں", title_en: "Introduction to Arabic", cat: "Language", level: "FREE", lessons: 12 },
+            { id: 2, title_ur: "علوم القرآن", title_en: "Quranic Sciences (Ulum al-Quran)", cat: "Islamic Science", level: "BASIC", lessons: 24 },
+            { id: 3, title_ur: "مطالعہ حدیث", title_en: "Hadith Studies", cat: "Islamic Science", level: "BASIC", lessons: 30 },
+            { id: 4, title_ur: "فقہ اسلامی", title_en: "Islamic Jurisprudence (Fiqh)", cat: "Islamic Science", level: "PRO", lessons: 45 },
+            { id: 5, title_ur: "سیرت النبی ﷺ", title_en: "Islamic History (Seerah)", cat: "Islamic Science", level: "FREE", lessons: 18 },
+            { id: 6, title_ur: "منطق اور فلسفہ", title_en: "Logic & Philosophy (Mantiq)", cat: "Research", level: "PRO", lessons: 15 },
+            { id: 7, title_ur: "تحقیقی طریقہ کار", title_en: "Research Methodology", cat: "Research", level: "MASTER", lessons: 20 },
+            { id: 8, title_ur: "فن تعلیم", title_en: "Advanced Pedagogy (Teaching)", cat: "Education", level: "PRO", lessons: 10 },
+            { id: 9, title_ur: "اسلامی مالیات", title_en: "Islamic Finance", cat: "Professional", level: "MASTER", lessons: 22 },
+            { id: 10, title_ur: "فن تحقیق", title_en: "Manuscript Study (Tahqiq)", cat: "Research", level: "MASTER", lessons: 35 },
+            { id: 11, title_ur: "سکالرز کے لیے ٹیکنالوجی", title_en: "Technology for Scholars", cat: "Technology", level: "BASIC", lessons: 8 },
+            { id: 12, title_ur: "اخلاقیات اور قیادت", title_en: "Leadership & Ethics", cat: "Professional", level: "FREE", lessons: 12 }
+        ];
+
+        function renderCourses() {
+            const grid = document.getElementById('course-grid');
+            grid.innerHTML = courses.map(course => `
+                <div class="bg-white p-5 rounded-xl border card-hover flex flex-col justify-between h-full relative group">
+                    <div class="absolute top-4 right-4 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="bg-emerald-100 text-emerald-700 p-2 rounded hover:bg-emerald-200" title="Edit Course"><i class="fas fa-edit text-xs"></i></button>
+                        <button class="bg-amber-100 text-amber-700 p-2 rounded hover:bg-amber-200" title="Duplicate"><i class="fas fa-copy text-xs"></i></button>
+                        <button class="bg-red-100 text-red-700 p-2 rounded hover:bg-red-200" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div>
+                        <div class="mb-4">
+                            <span class="status-badge ${getLevelClass(course.level)}">${course.level}</span>
+                            <span class="text-[10px] text-gray-400 font-bold ml-2 uppercase">${course.cat}</span>
+                        </div>
+                        <h4 class="text-right font-bold text-emerald-900 mb-1" dir="rtl">${course.title_ur}</h4>
+                        <h5 class="text-gray-800 font-semibold text-sm mb-2">${course.title_en}</h5>
+                        <p class="text-xs text-gray-500"><i class="fas fa-play-circle mr-1"></i> ${course.lessons} Dynamic Lessons</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] text-emerald-700 font-bold uppercase"><i class="fas fa-link mr-1"></i> Universal Runtime Inherited</span>
+                        <button class="text-xs font-bold text-emerald-800 hover:underline">Edit Chapters</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getLevelClass(level) {
+            if(level === 'MASTER') return 'level-master';
+            if(level === 'PRO') return 'level-pro';
+            if(level === 'BASIC') return 'level-basic';
+            return 'level-free';
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('section-' + id).classList.remove('hidden');
+            
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('link-' + id).classList.add('active');
+
+            const titleMap = {
+                'overview': 'Control Center Overview',
+                'courses': 'Course Factory CMS',
+                'membership': 'Membership Tier Management',
+                'payments': 'Payment Settings',
+                'ai-runtime': 'AI Runtime Center',
+                'members': 'Member Directory',
+                'branding': 'Visual Identity & Branding'
+            };
+            document.getElementById('section-title').innerText = titleMap[id];
+        }
+
+        function saveAllChanges() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            toast.style.pointerEvents = 'auto';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.pointerEvents = 'none';
+            }, 3000);
+        }
+
+        window.onload = renderCourses;
+    </script>
+</body>
+</html>
